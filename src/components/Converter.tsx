@@ -94,7 +94,30 @@ const Converter: React.FC = () => {
       item.appendChild(creator);
 
       const pubDate = updatedDoc.createElement('pubDate');
-      pubDate.innerHTML = entry.querySelector('published')?.innerHTML || '';
+      const date = entry.querySelector('published')?.innerHTML;
+      if (date) {
+        const originalDate = new Date(date);
+
+        const options = {
+          weekday: 'short',
+          year: 'numeric',
+          month: 'short',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          timeZoneName: 'short',
+        };
+
+        const convertedDate = originalDate.toLocaleString(
+          'en-US',
+          options as Intl.DateTimeFormatOptions,
+        );
+
+        pubDate.innerHTML = convertedDate;
+      } else {
+        pubDate.innerHTML = '';
+      }
       item.appendChild(pubDate);
 
       const description = updatedDoc.createElement('description');
