@@ -86,23 +86,19 @@ const Converter: React.FC = () => {
       item.appendChild(title);
 
       const link = updatedDoc.createElement('link');
-      link.innerHTML =
-        currentDoc.querySelector('link')?.getAttribute('href') || '';
+      link.innerHTML = entry.querySelector('link')?.getAttribute('href') || '';
       item.appendChild(link);
 
       const creator = updatedDoc.createElement('dc:creator');
-      creator.innerHTML =
-        currentDoc.querySelector('author > name')?.innerHTML || '';
+      creator.innerHTML = entry.querySelector('author > name')?.innerHTML || '';
       item.appendChild(creator);
 
       const pubDate = updatedDoc.createElement('pubDate');
-      pubDate.innerHTML =
-        currentDoc.querySelector('published')?.innerHTML || '';
+      pubDate.innerHTML = entry.querySelector('published')?.innerHTML || '';
       item.appendChild(pubDate);
 
       const description = updatedDoc.createElement('description');
-      description.innerHTML =
-        currentDoc.querySelector('content')?.innerHTML || '';
+      description.innerHTML = entry.querySelector('content')?.innerHTML || '';
       item.appendChild(description);
 
       channel.appendChild(item);
@@ -149,9 +145,7 @@ const Converter: React.FC = () => {
 
         <Preview>
           <Title>RSS Preview</Title>
-          <ActionButton onClick={downloadRssFile}>
-            Download RSS
-          </ActionButton>
+          <ActionButton onClick={downloadRssFile}>Download RSS</ActionButton>
           <TextArea value={rssData} readOnly />
         </Preview>
       </OutputContainer>
