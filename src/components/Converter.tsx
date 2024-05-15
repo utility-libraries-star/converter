@@ -168,7 +168,9 @@ const Converter: React.FC = () => {
 
         <Preview>
           <Title>RSS Preview</Title>
-          <ActionButton onClick={downloadRssFile}>Download RSS</ActionButton>
+          {!!rssData && (
+            <ActionButton onClick={downloadRssFile}>Download RSS</ActionButton>
+          )}
           <TextArea value={rssData} readOnly />
         </Preview>
       </OutputContainer>
